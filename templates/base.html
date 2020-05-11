@@ -1,0 +1,74 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css">
+
+    <link rel="icon" href="{% static 'images/fav.png' %}" type="image/png">
+    <title>{% block title %} Contacts {% endblock title %} </title>
+
+</head>
+<body>
+
+    <nav>
+        <a class="logo" href="{% url 'home' %}">
+            <i class="fas fa-user-circle"></i>&nbsp;Contacts
+        </a>
+
+        <span class="float-center center-text ml-5 p-0">
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="mr-4 text-white">
+                    <i class="fas fa-user-plus"></i> &nbsp; Log out
+                </a>
+            {% else %}
+                <a href="{% url 'signup' %}" class="mr-4 text-white">
+                    <i class="fas fa-user-plus"></i> &nbsp; Sign up
+                </a>
+                <a href="{% url 'login' %}" class="mr-4 text-white">
+                    <i class="fas fa-sign-in-alt"></i> &nbsp; Log in
+                </a>
+            {% endif %}
+            <a href="{% url 'create' %}" class="mr-4 text-white">
+                <i class="fas fa-plus"></i> &nbsp; Add Contact
+            </a>
+        </span>
+        <form class="form-inline my-2 float-right mr-3" action="{% url 'search' %}">
+            <input class="form-control" type="text" placeholder="Find contacts..." name="search_term" value="{{search_term}}"/>
+            <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </nav>
+
+    {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show text-center" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            {{ message }}
+          </div>
+        {% endfor %}
+    {% endif %}
+
+<!-- Navbar ends -->
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <!-- footer -->
+        <footer class="mt-4">
+            <p class="text-center p-1 m-0">&copy; My Contacts 2020</p>
+        </footer>
+    <!-- footer ends -->
+    <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

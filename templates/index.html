@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} My Contacts {% endblock title %}
+{% block content %}
+    <div class="container">
+        <h3 class="heading font-weight-light mt-2 mb-3">Here are your contacts</h3>
+        <hr/>
+    </div>
+
+
+    <div class="container main-part">
+        {% if contacts %}
+            <!-- Card for details -->
+            {% for contact in contacts %}
+                {% include 'partials/_card.html' %}
+            {% endfor %}
+            <!-- Card for details ends -->
+        {% else %}
+            <h2>You have not saved any contacts yet</h2>
+        {% endif %}
+    </div>
+{% endblock content %}

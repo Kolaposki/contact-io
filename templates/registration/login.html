@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+Login
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h2 class="heading font-weight-light text-center">Login</h2>
+    <hr>
+</div>
+<div class="container text-center card "style="max-width: 40rem;">
+    <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form|crispy}}
+    <input type="submit" value="Login" class="w-100 my-2 btn btn-info">
+    </form>
+
+    <div class="card text-white bg-dark mb-3" >
+        <div class="card-body">
+            <h5 class="card-title text-center">Is this your first time here?</h5>
+            <p class="card-text">For full access to this site, you first need to create an account.</p>
+            <a href="{% url 'signup' %}" class="btn btn-primary">Sign up</a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

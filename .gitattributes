@@ -1,0 +1,7 @@
+static/* linguist-vendored
+staticfiles/* linguist-vendored
+templates/* linguist-vendored
+*.html linguist-vendored
+*.htm linguist-vendored
+*.htm inguist-detectable=false
+*.html inguist-detectable=false
