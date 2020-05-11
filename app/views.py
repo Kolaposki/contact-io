@@ -96,9 +96,3 @@ class DeletePageView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         obj = self.get_object()  # get the objects from the db
         messages.success(self.request, self.success_message % obj.__dict__)  # inject the object into the message
         return super(DeletePageView, self).delete(request, *args, **kwargs)
-
-
-class SignUpView(CreateView):
-    form_class = UserCreationForm
-    template_name = 'registration/signup.html'
-    success_url = reverse_lazy('home')

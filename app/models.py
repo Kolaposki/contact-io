@@ -1,8 +1,8 @@
 from django.db import models
 from django.db import models
-from django.utils.timezone import datetime
-from django.contrib.auth.models import User
-
+from django.utils import timezone
+# from django.contrib.auth.models import User
+from django.conf import settings
 from PIL import Image
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
@@ -18,7 +18,7 @@ def user_directory_path(instance, filename):
 
 
 class Contacts(models.Model):
-    manager = models.ForeignKey(User, on_delete=models.CASCADE)
+    manager = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
     email = models.EmailField(max_length=100)
     phone = models.IntegerField()
@@ -28,7 +28,7 @@ class Contacts(models.Model):
         ('female', 'Female')
     ))
     image = models.ImageField(upload_to=user_directory_path, blank=True)
-    date_added = models.DateTimeField(default=datetime.now)
+    date_added = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"{self.name}'s contact"
@@ -47,7 +47,7 @@ class Contacts(models.Model):
         We can override django model using save method and make sure image is saved and user_directory_path get the 
         instance with id
     '''
-
+    """
     def save(self, *args, **kwargs):
         if self.id is None:
             image = self.image
@@ -68,3 +68,4 @@ class Contacts(models.Model):
                                           sys.getsizeof(output), None)
 
         super(Contacts, self).save(*args, **kwargs)
+    """

@@ -18,10 +18,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from app import urls
+from users import urls as users_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(urls.urlpatterns)),
+    path('account/', include(users_urls.urlpatterns)),
     path('', include('django.contrib.auth.urls'))  # for authentication
 ]
 
