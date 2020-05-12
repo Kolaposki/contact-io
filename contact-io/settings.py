@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.google',
 
     # 'debug_toolbar',
     'import_export',
@@ -188,6 +189,14 @@ SOCIALACCOUNT_PROVIDERS = {'facebook': {'METHOD': 'oauth2',
                                         'VERIFIED_EMAIL': False,
                                         'VERSION': 'v2.4'
                                         },
-                           'google': {},
+                           'google': {
+                               'SCOPE': [
+                                   'profile',
+                                   'email',
+                               ],
+                               'AUTH_PARAMS': {
+                                   'access_type': 'online',
+                               }
+                           },
                            'twitter': {}
                            }

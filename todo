@@ -16,14 +16,29 @@ Syncing
     - Twitter followers
     - Facebook friends
 
+Landing Page
+- Create beautiful landing page for new users directed from twitter or others
+
 
 Homepage Functionalities
 - AJAX powered [ ALL CRUD OPERATIONS ]
-- Allow sorting of contact by their name, number, email,
+- Allow sorting of contact by their name, number, email, tags
 - Add share button to share contact link with friends
 - Resize contact pic when uploaded
+- Tags for contacts [ django-tags ]
 
 
 Heroku
 - Add credit card to heroku page
 - Get a free domain from dot.tk
+
+***********************************************************************************************************************
+
+https://www.zoho.com/contactmanager/
+
+Card Scanner API
+- Grab contact from visual objects
+    APIS
+        https://microblink.com/products/blinkid
+        https://accurascan.com/web-api/doc
+        https://www.contactsplus.com

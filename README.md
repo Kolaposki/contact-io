@@ -1,10 +1,13 @@
 # Contact-io
-A contact manager web application to store personal contacts
+A personal contact manager just for you
+
+**Contact-io** is a web application that lets you organize your contacts in one place.
 
 ## Features
 * Create, update and delete contacts
-* Sync from google contacts
+* Sync from google contacts, twitter and facebooks
 * Easy navigation with search functionality 
+* Add similar tags to contacts
 
 ## Tools & Libraries
 
