@@ -6,12 +6,12 @@ from import_export.admin import ImportExportModelAdmin
 
 
 class ContactsAdmin(ImportExportModelAdmin):  # formerly class ContactsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'gender', 'email', 'info', 'phone')
-    list_editable = ('email', 'info')
-    list_display_links = ('id', 'name')  # add a link to access info about the contact [ initially was 'id' ]
-    list_per_page = 10  # show 10 contacts per page
-    search_fields = ('name', 'email', 'info')  # fields to be able to search for
-    list_filter = ('gender',)  # option to filter by a property
+    list_display = ('id', 'manager', 'name',)
+    # list_editable = ('email', 'info')
+    list_display_links = ('id', 'manager')
+    list_per_page = 20  # show 10 contacts per page
+    search_fields = ('name', 'manager__username')  # fields to be able to search for
+    list_filter = ('gender', 'manager', 'date_added')  # option to filter by a property
 
 
 admin.site.register(Contacts, ContactsAdmin)

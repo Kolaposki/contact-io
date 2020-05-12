@@ -38,12 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     # Local
-    'app.apps.AppConfig',
-    'users.apps.UsersConfig',
-    
+    'app',
+    'users',
+
     # Third-party
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.twitter',
+
     # 'debug_toolbar',
     'import_export',
     'crispy_forms',
@@ -60,7 +64,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 
 ROOT_URLCONF = 'contact-io.urls'
 
@@ -138,7 +141,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # location to store all media files that's uploaded by user
 MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = "bootstrap4"
-SITE_ID = 1
+SITE_ID = 2
 
 ACCOUNT_LOGOUT_REDIRECT_URL = 'home'
 
@@ -147,14 +150,12 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-
 # for authentication {contact-io/login}
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'  # url to redirect to after successful login
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 AUTH_USER_MODEL = 'users.CustomUser'
-
 
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_SESSION_REMEMBER = True
@@ -163,3 +164,30 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
+
+SOCIALACCOUNT_PROVIDERS = {'facebook': {'METHOD': 'oauth2',
+                                        'SCOPE': ['email', 'public_profile', 'user_friends'],
+                                        'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
+                                        'INIT_PARAMS': {'cookie': True},
+                                        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+                                        'LOCALE_FUNC': lambda request: 'en_US',
+                                        'FIELDS': [
+                                            'id',
+                                            'email',
+                                            'name',
+                                            'first_name',
+                                            'last_name',
+                                            'verified',
+                                            'locale',
+                                            'timezone',
+                                            'link',
+                                            'gender',
+                                            'updated_time',
+                                        ],
+                                        'EXCHANGE_TOKEN': True,
+                                        'VERIFIED_EMAIL': False,
+                                        'VERSION': 'v2.4'
+                                        },
+                           'google': {},
+                           'twitter': {}
+                           }

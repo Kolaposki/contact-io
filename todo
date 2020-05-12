@@ -3,14 +3,10 @@ Using Neumorphism - https://codepen.io/tag/neumorphism
     - Redesign Registration page
     - Redesign Contacts page
 
-User Profile
-- Create a personal profile for each user
-    - User's uploaded profile pic should be in the navbar [ use social network pic instead ]
-
 
 Authentication
 - Use Django all-auth to authenticate users with their facebook, twitter and google accounts
-- Allow user to login with their email address
+- Allow user to login with either their email address or username
 - Forgot password functionality
 
 
@@ -24,6 +20,8 @@ Syncing
 Homepage Functionalities
 - AJAX powered [ ALL CRUD OPERATIONS ]
 - Allow sorting of contact by their name, number, email,
+- Add share button to share contact link with friends
+- Resize contact pic when uploaded
 
 
 Heroku
